@@ -1,0 +1,23 @@
+[
+  {
+    "id": "4ec8b3c1-4f77-41ec-a030-0e977b35d716",
+    "name": "Model 3",
+    "releaseYear": 2021,
+    "available": true,
+    "gasAvailable": true
+  },
+  {
+    "id": "e916393e-8e9a-4c21-9ae9-b2aecd686edf",
+    "name": "Malibu",
+    "releaseYear": 2022,
+    "available": true,
+    "gasAvailable": true
+  },
+  {
+    "id": "02ea3b6a-48f6-407f-ae33-27f22eb0e3e1",
+    "name": "Prius",
+    "releaseYear": 2021,
+    "available": true,
+    "gasAvailable": true
+  }
+]
