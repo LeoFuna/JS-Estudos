@@ -1,0 +1,23 @@
+[
+  {
+    "id": "e7bf21dc-591d-4ca9-b618-770be9b07535",
+    "name": "Ranchero",
+    "releaseYear": 2022,
+    "available": true,
+    "gasAvailable": true
+  },
+  {
+    "id": "19b1429c-503a-40ac-96aa-8282decad240",
+    "name": "Ranchero",
+    "releaseYear": 2022,
+    "available": true,
+    "gasAvailable": true
+  },
+  {
+    "id": "8d24bdc1-b609-467e-b08d-7897b27d1ab0",
+    "name": "LeBaron",
+    "releaseYear": 2022,
+    "available": true,
+    "gasAvailable": true
+  }
+]
