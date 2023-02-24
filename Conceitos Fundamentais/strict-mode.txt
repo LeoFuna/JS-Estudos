@@ -1,0 +1,9 @@
+
+
+Call Stack
+Relacionado a tipos primitivos
+
+Memory Heap
+Relacionado a referencia de memoria
+
+Tipos de Valor e Tipos de Referencia
