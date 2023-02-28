@@ -1,5 +1,6 @@
 import database from './../database.json'
 import Person from './person.js'
+import { save } from './repository.js'
 import TerminalController from './terminalController.js'
 
 const STOP_TERM = ':q'
@@ -10,14 +11,15 @@ terminalController.initializeTerminal(database, 'pt-BR')
 async function mainLoop() {
   try {
     const answer = await terminalController.question('Digite ID VEICULOS(Separado por ,) KM_VIAJADOS DE PARA\n')
-    console.log('answer', answer)
+
     if (answer === STOP_TERM) {
       terminalController.closeTerminal()
       console.log('process finished!')
       return
     }
     const person = Person.generateInstanceFromString(answer)
-    console.log('person', person.formatted('pt-BR'))
+    terminalController.updateTable(person.formatted('pt-BR'))
+    await save(person)
 
     return mainLoop()
   } catch(error) {
