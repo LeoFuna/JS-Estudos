@@ -1,1 +1,5 @@
 /node_modules
+
+/modulo03/*/node_modules
+
+/JS-testing/*/node_modules
