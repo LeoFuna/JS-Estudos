@@ -15,9 +15,9 @@ export default class Person {
       return new Date(year, (month - 1), day)
     }
 
-
     return {
       id: Number(this.id),
+      // o objeto Intl é o namespace para acessar a API de Internacionalizacao do ECMAScript
       vehicles: new Intl
         .ListFormat(language, { style: 'long', type: 'conjunction' })
         .format(this.vehicles),
@@ -31,5 +31,19 @@ export default class Person {
         .DateTimeFormat(language, { month: 'long', day: '2-digit', year: 'numeric' })
         .format(mapDate(this.to))
     }
+  }
+
+  static generateInstanceFromString(text) {
+    const EMPTY_SPACE = ' '
+    const [id, vehicles, kmTraveled, from, to] = text.split(EMPTY_SPACE)
+    const person = new Person({
+      id, 
+      kmTraveled,
+      from,
+      to,
+      vehicles: vehicles.split(',')
+    })
+
+    return person
   }
 }

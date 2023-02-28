@@ -1,29 +1,30 @@
-import DraftLog from 'draftlog'
-import chalk from 'chalk'
-import chalkTable from 'chalk-table'
-import readline from 'readline'
-
 import database from './../database.json'
 import Person from './person.js'
+import TerminalController from './terminalController.js'
 
-DraftLog(console).addLineListener(process.stdin)
+const STOP_TERM = ':q'
 
-const options = {
-  leftPad: 2,
-  columns: [
-    { field: 'id', name: chalk.cyan("ID") },
-    { field: 'vehicles', name: chalk.cyan("Vehicles") },
-    { field: 'kmTraveled', name: chalk.cyan("Km Traveled") },
-    { field: 'from', name: chalk.cyan("From") },
-    { field: 'to', name: chalk.cyan("To") }
-  ]
+const terminalController = new TerminalController()
+terminalController.initializeTerminal(database, 'pt-BR')
+
+async function mainLoop() {
+  try {
+    const answer = await terminalController.question('Digite ID VEICULOS(Separado por ,) KM_VIAJADOS DE PARA\n')
+    console.log('answer', answer)
+    if (answer === STOP_TERM) {
+      terminalController.closeTerminal()
+      console.log('process finished!')
+      return
+    }
+    const person = Person.generateInstanceFromString(answer)
+    console.log('person', person.formatted('pt-BR'))
+
+    return mainLoop()
+  } catch(error) {
+    console.error('Deu ruim**', error)
+    return mainLoop()
+  }
 }
 
-const table = chalkTable(options, database.map(item => new Person(item).formatted('en')))
-// Esse draft que está dentro console só existe pois na linha 7 nós instanciamos o Draftlog no console
-const print = console.draft(table)
-
-const terminal = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-})
+// O await sem um async funciona por conta do TOP LEVEL AWAIT liberado desde a v14.8 do NODE
+await mainLoop();
