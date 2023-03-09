@@ -39,3 +39,23 @@ const proxiedGet = new Proxy(http.get, {
   });
 })()
 
+function minhaFuncao(parametro) {
+  console.log(`Chamando minhaFuncao com o parametro: ${parametro}`);
+  console.log('Esse é o this:', this.prop);
+
+}
+minhaFuncao.prototype = { sum: (a, b) => a + b }
+
+const meuProxy = new Proxy(minhaFuncao, {
+  apply: function(target, thisArg, args) {
+    console.log(`Antes de chamar a função`);
+    console.log('thisArgs', thisArg)
+    console.log('args', args)
+    console.log('Sou o prototype da Func:', target.prototype.sum(1, 3))
+    const result = target.apply(thisArg, args);
+    console.log(`Depois de chamar a função`);
+    return result;
+  }
+});
+
+meuProxy.call({ prop: 'Sou a prop' }, ['Hello World']);
