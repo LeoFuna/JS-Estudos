@@ -1,0 +1,25 @@
+regex101.com81
+/^\d{3}.\d{3}.\d{3}-\d{2}$/gm
+
+123.123.123-12
+321.321.321-32
+968.684.658-81
+
+replace [.-] - vazio  ( lembrar que [] é referente a um OU no Regex )
+
+
+Funa, Leo
+Mathielo, Hio
+Santo, Joao
+
+replace ^(\w+),\s(\w+)$ por
+{ firstName: "$2", lastName: "$2" }
+
+
+O [Leonardo Funabashi](https://meuportifolio.com) é um desenvolvedor de softwares,
+favor chegar no [Instagram](http://instagram.com/leofunabashi)
+
+Bora!
+
+\[(.*?)\]\(([http|https].*?)\) por
+<a href=¨$2">$1</a>
